@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Palaces Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    .card.shadow-sm {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .card.shadow-sm:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+      border-color: #ffa500;
+    }
+    .card.shadow-sm img {
+      transition: all 0.5s ease;
+    }
+    .card.shadow-sm:hover img {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+    .card.shadow-sm button {
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    .card.shadow-sm:hover button {
+      background-color: #ff6b00 !important;
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <script>
+    function viewPackage(btn) {
+      // Find card body
+      const card = btn.closest('.card');
+      const img = card.querySelector('img')?.getAttribute('src') || '';
+      const title = card.querySelector('h6 b')?.textContent || '';
+      // Prefer data-desc attribute, fall back to any paragraph or the title
+      const desc = (card.dataset && card.dataset.desc) ? card.dataset.desc : (card.querySelector('p')?.textContent || card.querySelector('h6')?.textContent || '');
+      // Build URL
+      const url = `package-details.html?title=${encodeURIComponent(title)}&img=${encodeURIComponent(img)}&desc=${encodeURIComponent(desc)}`;
+      window.location.href = url;
+    }
+  </script>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold" href="index.html">Historical Palaces</a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Menu Items -->
+        <ul class="navbar-nav ms-auto me-3">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html"><i class="bi bi-shield-lock"></i> Admin Portal</a></li>
+        </ul>
+
+        <!-- Search Bar -->
+        <form class="d-flex me-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+        <br>
+
+       
+        <!-- <div>
+            <a href="logout" id="logout"> <i class="bi bi-box-arrow-right"></i></a>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- Hero Section -->
+  <section class="heroindex text-center">
+    <div class="container">
+
+      <h1>Explore the Grandeur of Historical Palaces</h1>
+      <p class="lead">Discover stories, architecture, and hidden gems of the world's royal heritage</p>
+      <a href="#blog" class="btn btn-warning btn-lg mt-3">Start Reading</a>
+    </div>
+  </section>
+  <br>
+
+  <!-- tour price -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card shadow-sm rounded" style="overflow: hidden;;" data-desc="7-day Golden Triangle including the Taj Mahal, Delhi and Jaipur. Comfortable hotels, guided tours, and breakfast included—perfect for first-time visitors.">
+            <img src="img/Tajmahal.avif" alt="Taj Mahal" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <div style="font-size:14px; color:#ffa500;">
+                ★★★★☆ <span class="text-muted" style="font-size:12px;">257 Ratings</span>
+              </div>
+
+              <h6><b>Gateway to Golden Triangle India | FREE Taj Mahal Visit</b></h6>
+
+              <del class="text-muted" style="font-size: 13px;">₹15,000</del>
+
+              <div style="font-size:16px; color:#000;"><b>₹8,000.00 <span class="text-muted"
+                    style="font-size: 13px;">per adult</span></b>
+              </div>
+
+                <button class="btn w-100 mt-3"
+                  style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;" onclick="viewPackage(this)">View more</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card shadow-sm rounded" style="overflow: hidden;;" data-desc="5-day classic Golden Triangle: Delhi, Agra & Jaipur. Includes guided city tours, monument entries, and local cultural experiences.">
+            <img src="img/Golden Triangle journey.avif" alt="Taj Mahal" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <div style="font-size:14px; color:#ffa500;">
+                ★★★★☆ <span class="text-muted" style="font-size:12px;">151 Ratings</span>
+              </div>
+
+              <h6><b>Golden Triangle journey | Discover Delhi, Agra & Jaipur</b></h6>
+
+              <del class="text-muted" style="font-size: 13px;">₹20,000</del>
+
+              <div style="font-size:16px; color:#000;"><b>₹10,000.00 <span class="text-muted"
+                    style="font-size: 13px;">per adult</span></b>
+              </div>
+
+                <button class="btn w-100 mt-3"
+                  style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;" onclick="viewPackage(this)">View more</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card shadow-sm rounded" style="overflow: hidden;;" data-desc="8-day Golden Triangle with Ranthambore wildlife safari. Enjoy historic sites plus a chance to spot wildlife in Ranthambore National Park. Park permits included.">
+            <img src="img/golden triangle tour.avif" alt="Ranthambore" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <div style="font-size:14px; color:#ffa500;">
+                ★★★★☆ <span class="text-muted" style="font-size:12px;">144 Ratings</span>
+              </div>
+
+              <h6><b>Golden Triangle Tour with Ranthambore</b></h6>
+
+              <del class="text-muted" style="font-size: 13px;">₹17,000</del>
+
+              <div style="font-size:16px; color:#000;"><b>₹9,000.00 <span class="text-muted"
+                    style="font-size: 13px;">per adult</span></b>
+              </div>
+
+                <button class="btn w-100 mt-3"
+                  style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;" onclick="viewPackage(this)">View more</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card shadow-sm rounded" style="overflow: hidden;;" data-desc="10-day Golden Triangle & Rajasthan highlights: forts, palaces, and cultural experiences across Jaipur, Jodhpur and Udaipur with local guides.">
+            <img src="img/Golden triangle with rajsthan.avif" alt="Rajsthan" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <div style="font-size:14px; color:#ffa500;">
+                ★★★★☆ <span class="text-muted" style="font-size:12px;">98 Ratings</span>
+              </div>
+
+              <h6><b>Golden Triangle With Rajsthan</b></h6>
+
+              <del class="text-muted" style="font-size: 14px;">₹20,800</del>
+
+              <div style="font-size:16px; color:#000;"><b>₹10,000.00 <span class="text-muted"
+                    style="font-size: 13px;">per adult</span></b>
+              </div>
+
+                <button class="btn w-100 mt-3"
+                  style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;" onclick="viewPackage(this)">View more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card shadow-sm rounded" style="overflow: hidden;;" data-desc="7-day package with jungle visit included: nature walks, village tours, and comfortable stays — great for nature lovers and families.">
+            <img src="img/golden 5.avif" alt="Taj Mahal" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <div style="font-size:14px; color:#ffa500;">
+                ★★★★☆ <span class="text-muted" style="font-size:12px;">78 Ratings</span>
+              </div>
+
+              <h6><b>Golden Triangle India | FREE Jungle Visit</b></h6>
+
+              <del class="text-muted" style="font-size: 13px;">₹17,500</del>
+
+              <div style="font-size:16px; color:#000;"><b>₹11,000.00 <span class="text-muted"
+                    style="font-size: 13px;">per adult</span></b>
+              </div>
+
+                <button class="btn w-100 mt-3"
+                  style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;" onclick="viewPackage(this)">View more</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card shadow-sm rounded" style="overflow: hidden;;" data-desc="Discover Delhi, Agra & Jaipur with a deluxe itinerary: guided sightseeing, premium hotels and local dining experiences included.">
+            <img src="img/Golden 6.avif" alt="Taj Mahal" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <div style="font-size:14px; color:#ffa500;">
+                ★★★★☆ <span class="text-muted" style="font-size:12px;">151 Ratings</span>
+              </div>
+
+              <h6><b>Golden Triangle journey | Discover Delhi, Agra & Jaipur</b></h6>
+
+              <del class="text-muted" style="font-size: 13px;">₹50,700</del>
+
+              <div style="font-size:16px; color:#000;"><b>₹18,000.00 <span class="text-muted"
+                    style="font-size: 13px;">per adult</span></b>
+              </div>
+
+                <button class="btn w-100 mt-3"
+                  style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;" onclick="viewPackage(this)">View more</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card shadow-sm rounded" style="overflow: hidden;;" data-desc="Golden Triangle with Ranthambore: historic monuments plus an exciting wildlife safari. Ideal for travellers who want culture and nature together.">
+            <img src="img/golden 7.avif" alt="Ranthambore" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <div style="font-size:14px; color:#ffa500;">
+                ★★★★☆ <span class="text-muted" style="font-size:12px;">144 Ratings</span>
+              </div>
+
+              <h6><b>Golden Triangle Tour with Ranthambore</b></h6>
+
+              <del class="text-muted" style="font-size: 13px;">₹25,890</del>
+
+              <div style="font-size:16px; color:#000;"><b>₹14,000.00 <span class="text-muted"
+                    style="font-size: 13px;">per adult</span></b>
+              </div>
+
+                <button class="btn w-100 mt-3"
+                  style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;" onclick="viewPackage(this)">View more</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card shadow-sm rounded" style="overflow: hidden;;" data-desc="Extended Rajasthan tour visiting palaces and forts across the state with cultural performances and guided city tours.">
+            <img src="img/golden 8.avif" alt="Rajsthan" style="object-fit: cover; height: 200px;">
+            <div class="card-body">
+              <div style="font-size:14px; color:#ffa500;">
+                ★★★★☆ <span class="text-muted" style="font-size:12px;">98 Ratings</span>
+              </div>
+
+              <h6><b>Golden Triangle With Rajsthan</b></h6>
+
+              <del class="text-muted" style="font-size: 14px;">₹20,800</del>
+
+              <div style="font-size:16px; color:#000;"><b>₹13,000.00 <span class="text-muted"
+                    style="font-size: 13px;">per adult</span></b>
+              </div>
+
+                <button class="btn w-100 mt-3"
+                  style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;" onclick="viewPackage(this)">view more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Blog Section -->
+  <section id="blog" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4 fw-bold">Latest Articles</h2>
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="img/Masoore palace.jpeg" class="card-img-top" alt="Mysore Palace">
+
+            <div class="card-body">
+              <h5 class="card-title">The Magnificent Mysore Palace</h5>
+              <p class="card-text">Step into the royal history of Karnataka with the breathtaking Mysore Palace, a blend
+                of Indo-Saracenic architecture.</p>
+              <a href="#" class="btn btn-outline-dark btn-sm">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80"
+              class="card-img-top" alt="City Palace Jaipur">
+            <div class="card-body">
+              <h5 class="card-title">City Palace of Jaipur</h5>
+              <p class="card-text">A jewel in the Pink City, Jaipur’s City Palace showcases royal heritage with stunning
+                courtyards and museums.</p>
+              <a href="#" class="btn btn-outline-dark btn-sm">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.Kmjw5niovhgarEBjIRIftAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+              class="card-img-top" alt="Udaipur Lake Palace">
+            <div class="card-body">
+              <h5 class="card-title">Udaipur's Lake Palace</h5>
+              <p class="card-text">Floating on Lake Pichola, the Lake Palace of Udaipur is a symbol of romance and royal
+                legacy of Rajasthan.</p>
+              <a href="#" class="btn btn-outline-dark btn-sm">Read More</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Famous Palaces Section -->
+  <section id="famous" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4 fw-bold">Most Famous Palaces in the World</h2>
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="img/Tajmahal.avif" class="card-img-top" alt="Taj Mahal">
+            <div class="card-body">
+              <h5 class="card-title">Taj Mahal, India</h5>
+              <p class="card-text">An eternal symbol of love, the Taj Mahal in Agra is one of the most visited and
+                admired monuments worldwide.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img
+              src="https://th.bing.com/th/id/OSK.HERO5EkbIoy12IHaZMS927aAm0zffqkKq7ZfIg5iWSIlqXc?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+              class="card-img-top" alt="Buckingham Palace">
+            <div class="card-body">
+              <h5 class="card-title">Buckingham Palace, UK</h5>
+              <p class="card-text">The official residence of the British monarch, Buckingham Palace in London is a
+                symbol of power and tradition.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80"
+              class="card-img-top" alt="Versailles Palace">
+            <div class="card-body">
+              <h5 class="card-title">Palace of Versailles, France</h5>
+              <p class="card-text">A masterpiece of French Baroque architecture, Versailles Palace is famous for its
+                Hall of Mirrors and grand gardens.</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="img/Red Fort.avif" class="card-img-top" alt="Red Fort">
+            <div class="card-body">
+              <h5 class="card-title">Red Fort, Delhi</h5>
+              <p class="card-text">A UNESCO World Heritage Site, the Red Fort in Delhi was built by Mughal Emperor Shah
+                Jahan and remains a symbol of India’s sovereignty.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="img/Hawa Mahal Jaypur.avif" class="card-img-top" alt="Hawa Mahal">
+            <div class="card-body">
+              <h5 class="card-title">Hawa Mahal, Jaipur</h5>
+              <p class="card-text">Known as the “Palace of Winds,” Hawa Mahal is an architectural gem with 953 small
+                windows that allowed royal women to observe street life unseen.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img
+              src="https://media.gettyimages.com/id/95524495/photo/umaid-bhawan-palace-jodhpur-rajasthan-india.jpg?b=1&s=170667a&w=0&k=20&c=-MfGPgwMj7VKofG-Lg2Unr97aHenRbCRCJjuy2ZtzJ8="
+              class="card-img-top" alt="Umaid Bhawan Palace">
+            <div class="card-body">
+              <h5 class="card-title">Umaid Bhawan Palace, Jodhpur</h5>
+              <p class="card-text">One of the world’s largzc  est private residences, Umaid Bhawan Palace is part royal
+                residence, part museum, and part luxury hotel.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--  Card Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">01</span>
+              <span class="title">Taj Mahal, Agra</span>
+            </div>
+            <img src="img/Tajmahal.avif" alt="Taj Mahal">
+            <div class="custom-card-body">
+              <p>
+                One of the most famous historical sites in India, the Taj Mahal of Agra dates back to the 17th century.
+                It was built by Shah Jahan, the Mughal emperor, in the memory of Mumtaz Mahal, his third wife. It is
+                also the abode of the tomb of Shah Jahan himself.
+              </p>
+
+              <div class="extra-content" style="display: none;">
+                <p>The Taj Mahal has intricate carvings and is made entirely of white marble, on the southern banks of
+                  the Yamuna River. It is also one of the Seven Wonders of the World.</p>
+                <p>Entry fee: INR 45 (Indians), INR 1,050 (foreigners), INR 535 (SAARC and BIMSTEC), INR 200 (for every
+                  tourist who wishes to enter the mausoleum), FREE (for children below 15 years)</p>
+                <p>
+                <h6>Timings:</h6> 06:00 a.m. to 06:30 p.m. (Closed on Fridays)</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+
+          <!-- 02 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">02</span>
+              <span class="title">Red Fort, Delhi</span>
+            </div>
+            <img src="img/Red Fort.avif" alt="Red Fort">
+            <div class="custom-card-body">
+              <p>When it comes to the famous historical places in India, one cannot miss the Red Fort in Delhi. Also
+                popularly known as the Lal Qila, the Red Fort was constructed during Shah Jahan’s reign in the 17th
+                century.</p>
+
+              <div class="extra-content" style="display: none;">
+
+                <p>Constructed using huge red sandstone walls in the Mughal style of architecture, the highlights of the
+                  Red Fort include its beautiful geometric gardens, magnificent balconies and the opulent entertainment
+                  halls.</p>
+
+
+                <p>Entry fee: INR 35 (Indians), INR 500 (Foreigners);</p>
+
+                <p>For light and sound show: INR 60 on weekdays, INR 80 on weekends (adults), INR 20 on weekdays, INR 30
+                  on weekends (children)</p>
+
+                <p>
+                <h6>Timings:</h6> 09:30 a.m. to 04:30 p.m. (Closed on Mondays)</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+          <br><br>
+          <!-- 03 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">03</span>
+              <span class="title">Qutub Minar, Delhi</span>
+            </div>
+            <img src="img/Qutub Minar Delhi.avif" alt="Qutub Minar">
+            <div class="custom-card-body">
+              <p>Delhi’s Qutub Minar ranks amongst the top 10 historical places in India. A UNESCO World Heritage Site,
+                the Qutub Minar, also known as the Victory Tower, is the tallest brick minaret in the whole world,
+                standing tall at a height of 72.5 metres. Built of marble and red sandstone, you can also see many
+                beautiful carvings and intricate designs of the Qutub Minar.</p>
+              <div class="extra-content" style="display: none;">
+
+                <p>The Qutub Minar was built in the late 1100s, to celebrate Muslim Dominance in Delhi, after its last
+                  Hindu ruler was defeated. The construction was commenced by Qutab-ud-din Aibak, followed by his
+                  successors Iltutmish and Firoz Shah Tughlak. </p>
+
+                <p>
+                <h6>Entry fee:</h6> INR 10 (Indians), INR 250 (Foreigners); FREE (for children below 15 years)</p>
+
+                <p>
+                <h6>Timings:</h6> 07:00 a.m. to 05:00 p.m.</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+          <!-- <br><br> -->
+          <!-- 04 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">04</span>
+              <span class="title">India Gate, Delhi</span>
+            </div>
+            <img src="img/India Gate, Delhi.avif" alt="Gateway of India">
+            <div class="custom-card-body">
+              <p>
+                Of all the famous historical places in India, India Gate possibly ranks at the top. An iconic landmark
+                of Delhi, this sandstone-granite arch gate is amongst the largest war memorials in all of India, and is
+                surrounded by verdant lawns and gardens.</p>
+              <div class="extra-content" style="display: none;">
+
+                <p>Also known as the All-India War Memorial, the India Gate is located along the Rajpath, and is often
+                  said to be similar to the Arc de Triomphe in France, the Gateway of India in Mumbai and the Arch of
+                  Constantine in Rome.</p>
+
+                With a height of 42 metres, this memorial has been dedicated to the 82,000 Indian and British soldiers
+                who
+                sacrificed their lives in the First World War and the Third Anglo-Afghan War.
+
+                Great Deals Available On The View At The Palm Tickets</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+          <!-- <br><br> -->
+          <!-- 05 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">05</span>
+              <span class="title">Hawa Mahal, Jaipur</span>
+            </div>
+            <img src="img/Hawa Mahal Jaypur.avif" alt="Hawa Mahal">
+            <div class="custom-card-body">
+              <p>Hawa Mahal in Jaipur is one of the best historical places in India, in addition to being a prominent
+                landmark of Rajasthan. Dating back to the 18th century, Hawa Mahal is a 5-storey structure that
+                overlooks the bustling streets of Jaipur. It has also been made in a blend of the Rajput, Mughal and
+                Islamic styles of architecture.</p>
+              <div class="extra-content" style="display: none;">
+
+                <p> by Maharaja Sawai Pratap Singh, the Hawa Mahal has been constructed in a way such that the small
+                  windows here allow winds to enter the palace and keep it cool during the blazing hot summers.</p>
+
+                <p>
+                <h6>Entry fee:</h6> INR 50 (Indians), INR 200 (Foreigners)</p>
+
+                <p>Timings: 09:00 a.m. to 04:30 p.m.</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+          <!-- <br><br> -->
+          <!-- 06 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">06</span>
+              <span class="title">Charminar, Hyderabad</span>
+            </div>
+            <img src="img/Charminar, Hyderabad.avif" alt="Charminar">
+            <div class="custom-card-body">
+              <p>Amongst the most famous historical places in India, Hyderabad’s Charminar is a mosque that dates back
+                to the 16th century. This monument has been made in the Indo-Islamic styles of architecture, and has
+                subtle Persian influences in it. Complete with minarets, domes and arches, Charminar also boasts of
+                beautiful stucco work.</p>
+              <div class="extra-content" style="display: none;">
+
+                <p>Built by Quli Qutub Shah to signify the founding of Hyderabad, Charminar is a structure that is
+                  synonymous to the glorious days of the bygone eras. In the evening, it gets illuminated by lights and
+                  lanterns, and is a sight to behold at that time.</p>
+
+                <p>
+                <h6>Entry fee:</h6> INR 5 (Indians), INR 100 (Foreigners); INR 40 (SAARC and BIMSTEC), FREE (for
+                children
+                below 15 years)</p>
+
+                <p>
+                <h6>Timings:</h6> 09:30 a.m. to 05:30 p.m.</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+          <!-- <br><br> -->
+          <!-- 07 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">07</span>
+              <span class="title">Agra Fort, UP</span>
+            </div>
+            <img src="img/Agra Fort.avif" alt="India Gate">
+            <div class="custom-card-body">
+              <p>One of the oldest historical places in India is the Agra Fort, located in Uttar Pradesh. A true example
+                of the stunning Mughal form of architecture, the 16th century Agra Fort was built during Akbar’s reign
+                and has been recognized as a UNESCO World Heritage Site as well.</p>
+              <div class="extra-content" style="display: none;">
+
+                <p>The structure of the fort also has other different styles of architecture, along with intricate
+                  marble
+                  and sandstone artwork. It is often also called the Lal Qila by the locals.</p>
+
+                <p>
+                <h6>Entry fee:</h6> INR 35 (Indians), INR 550 (Foreigners), INR 35 (SAARC and BIMSTEC), FREE (for
+                children
+                below the age of 15 years)</p>
+
+                <p>
+                <h6>Timings:</h6> 06:00 a.m. to 06:00 p.m.</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+          <!-- <br><br> -->
+          <!-- 08 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">08</span>
+              <span class="title">Mysore Palace, Karnataka</span>
+            </div>
+            <img src="img/Mysore Palace, Karnataka.avif" alt="Mysore Palace">
+            <div class="custom-card-body">
+              <p>Boasting of the grand Indo-Saracenic style of architecture, the Mysore Palace, located in the city of
+                Mysore in Karnataka, remains one of the most popular historical sites in the country. Complete with
+                opulent domes, gardens, arches, turrets as well as colonnades, the palace was the former residence of
+                the royal family of Mysore.</p>
+              <div class="extra-content" style="display: none;">
+
+                <p>As of today, in addition to being their official residence, the palace also serves as a museum, where
+                  you can find many paintings, royal outfits and costumes, jewellery and a lot more.</p>
+
+                <p>
+                <h6>Entry fee:</h6> INR 70 (Indians), INR 70 (Foreigners), INR 30 (Children between 10 to 18 years),
+                FREE
+                (for children below 10 years)</p>
+
+                <p>
+                <h6>Timings:</h6> 10:00 a.m. to 05:30 p.m.</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+          <!-- <br><br> -->
+          <!-- 09 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">09</span>
+              <span class="title">Fatehpur Sikri, Uttar Pradesh</span>
+            </div>
+            <img src="img/Fatehpur Sikri.avif" alt="Konark Sun Temple">
+            <div class="custom-card-body">
+              <p>An architectural gem and one of the most exquisite historical places in India is Fatehpur Sikri, a town
+                in the Agra district of Uttar Pradesh. A recognized UNESCO World Heritage Site, Fatehpur Sikri is made
+                predominantly out of red sandstone, and dates back to the late 16th century, when it was founded by
+                Mughal Emperor Akbar.</p>
+              <div class="extra-content" style="display: none;">
+
+                <p>Fatehpur Sikri is completely fortified, and as of now, serves as the abode of Jodha Bai’s Palace,
+                  Buland Darwaza, Jama Masjid, Ibadat Khana, as well as the Tomb of Salim Chishti and other attractions.
+                </p>
+
+                <p>Entry fee: INR 40 (Indians), INR 550 (Foreigners); INR 20 (SAARC and BIMSTEC), FREE (for children
+                  below
+                  15 years)</p>
+
+                <p>
+                <h6>Timings:</h6> 06:00 a.m. to 06:00 p.m.</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+          <!-- <br><br> -->
+          <!-- 10 -->
+          <div class="custom-card mb-4">
+            <div class="custom-card-header">
+              <span class="number">10</span>
+              <span class="title">Victoria memorial</span>
+            </div>
+            <img src="img/Victoria Memorial.avif" alt="Ajanta Ellora Caves">
+            <div class="custom-card-body">
+              <p>Ranking amongst the top 10 historical places in India, Kolkata’s Victoria Memorial was constructed in
+                honour of Queen Victoria, making it one of the relics of the British Raj. Built entirely out of white
+                marble, the Victoria Memorial is almost a replica of its namesake in London.</p>
+              <div class="extra-content" style="display: none;">
+
+                <p>Surrounded by a well-manicured garden on all sides, it is home to a wide number of sculptures,
+                  artwork,
+                  statues and more. You can also find a 16-foot-tall bronze statue of the Angel of Victory on top of the
+                  central dome of the Victoria Memorial.</p>
+
+                <p>
+                <h6>Entry fee:</h6> INR 30 (Indians), INR 500 (Foreigners); INR 100 (SAARC and BIMSTEC), FREE (for
+                school
+                children and army veterans)</p>
+
+                <p>
+                <h6>Timings:</h6> 11:00 a.m. to 05:00 p.m. (Closed on Mondays)</p>
+              </div>
+
+              <button class="read-more">Read More</button>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Related Articles -->
+        <!-- <div class="col-sm-3">
+          <div class=" contact-form shadow-sm rounded">
+            <form class="text-center">
+              <h5>Get in touch</h5>
+              <input class="form-control" type="text" placeholder="Your Name"><br>
+              <input class="form-control" type="email" placeholder="Your Email"><br>
+              <input class="form-control" type="number" placeholder="Your Mobile"><br>
+              <input class="form-control" type="number" placeholder="Traveller count"><br>
+              <button class="btn w-100 mt-3"
+                style="background-color: orangered; color: white; font-weight: bold; border-radius: 4px;">Send
+                Enquiry</button>
+            </form>
+          </div>
+
+          <br><br><br><br> -->
+
+
+
+          <div class="p-3 bg-white shadow-sm rounded related-" style="position: sticky; top: 0; z-index: 0;">
+            <h4 class="mb-4" style="border-left: 4px solid orange; padding-left: 10px;">
+              Related Articles
+            </h4>
+
+            <!-- Article 1 -->
+            <div class="d-flex mb-3">
+              <img src="img/Annapurna.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 1">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Annapurna Circuit Vs Everest Base Camp – Trek Comparison
+              </a>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="d-flex mb-3">
+              <img src="img/Kerala.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 2">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala in June: Best Places to Visit, Things to Do & Festivals!
+              </a>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="d-flex mb-3">
+              <img src="img/Top 10 visa free.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 3">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Top 10 Visa-Free Countries for Indian Passport Holders in 2025!
+              </a>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+
+            <!-- Article 5 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+
+            <!-- Article 6 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+
+            <!-- Article 7 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+
+            <!-- Article 8 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+
+            <!-- Article 9 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+
+            <!-- Article 10 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+            <!-- Article 11 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+
+            <!-- Article 12 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+            <!-- Article 13 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+
+
+            <!-- Article 14 -->
+            <div class="d-flex mb-3">
+              <img src="img/kerala tour.avif" height="80px" width="80px" class="me-2 rounded" alt="Article 4">
+              <a href="#" class="text-decoration-none text-danger fw-semibold">
+                Kerala Tour Packages under ₹10000
+              </a>
+            </div>
+          </div>
+          <br><br>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="top-footer">
+      <!-- Column 1 -->
+      <div class="footer-column">
+        <h6>ABOUT THRILLOPHILIA</h6>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">We Are Hiring</a></li>
+          <li><a href="#">Thrillophilia Reviews</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policies</a></li>
+          <li><a href="#">Copyright Policies</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#" style="color:red;">Beware of Frauds</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-column">
+        <h6>FOR BRANDS</h6>
+        <ul>
+          <li><a href="#">Partner with us</a></li>
+          <li><a href="#">Destination Marketing</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-column">
+        <h6>FOR TRAVELLERS</h6>
+        <ul>
+          <li><a href="#">Gift an Experience</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4 -->
+      <div class="footer-column">
+        <h6>TRAVEL DESTINATIONS</h6>
+        <div class="footer-images">
+          <img src="img/bali.png" alt="Bali">
+          <img src="img/dubai.png" alt="Dubai">
+          <img src="img/singapore.png" alt="Singapore">
+          <img src="img/thailand.png" alt="Thailand">
+          <img src="img/andaman.png" alt="Andaman">
+          <img src="img/india.png" alt="India">
+          <img src="img/ladaak.png" alt="Ladakh">
+          <img src="img/hongkong.png" alt="Hongkong">
+          <img src="img/sri lanka.png" alt="Sri Lanka">
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-footer">
+      <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+      </div>
+      <p>© 2025 Historicalpalace.com All rights reserved. Designed by: himanshu rajput <i class="bi bi-heart-fill"
+          style="color: red;"></i> </p>
+      <p>The content and images used on this site are copyright protected and copyrights vests with the respective
+        owners...</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelectorAll('.read-more').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.previousElementSibling; // extra-content div
+        if (content.style.display === 'none') {
+          content.style.display = 'block';
+          button.textContent = 'Read Less';
+        } else {
+          content.style.display = 'none';
+          button.textContent = 'Read More';
+        }
+      });
+    });
+    
+    // Make .custom-card clickable and pass package details to package-details.html
+    document.querySelectorAll('.custom-card').forEach(card => {
+      // visually indicate clickability
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', (e) => {
+        // avoid interfering with inner links or buttons
+        if (e.target.closest('a') || e.target.tagName === 'BUTTON') return;
+
+        const titleEl = card.querySelector('.title');
+        const imgEl = card.querySelector('img');
+        const descEl = card.querySelector('.custom-card-body > p');
+        const title = titleEl ? titleEl.textContent.trim() : '';
+        const img = imgEl ? imgEl.getAttribute('src') : '';
+        const desc = descEl ? descEl.textContent.trim() : '';
+
+        const params = new URLSearchParams({ title, img, desc });
+        // open package details in a new tab
+        window.open('package-details.html?' + params.toString(), '_blank');
+      });
+    });
+  </script>
+
+
+
+</body>
+
+</html>

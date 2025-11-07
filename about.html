@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Us | Historical Palaces Blog</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+       <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                color: #333;
+            }
+
+            /* Gradient Colors */
+            .gradient-text {
+                background: linear-gradient(90deg, #f36f24, #f9a825);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .btn-gradient {
+                background: linear-gradient(90deg, #f36f24, #f9a825);
+                color: #fff;
+                border: none;
+                padding: 10px 25px;
+                border-radius: 30px;
+                font-weight: 600;
+                transition: 0.3s;
+            }
+
+            .btn-gradient:hover {
+                opacity: 0.9;
+            }
+
+            /* Hero Section */
+            .about-section {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 80px;
+                background: linear-gradient(135deg, #fff 60%, #fff8f0);
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                position: relative;
+            }
+
+            .about-section::after {
+                content: '';
+                position: absolute;
+                bottom: -40px;
+                left: 0;
+                width: 100%;
+                height: 80px;
+                background: url('https://svgshare.com/i/urj.svg') no-repeat center;
+                background-size: cover;
+            }
+
+            .about-text h5 {
+                color: #6c757d;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .about-text h1 {
+                font-size: 48px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            .about-text p {
+                font-size: 18px;
+                color: #6c757d;
+                margin-top: 15px;
+            }
+
+            .about-image img {
+                border-radius: 20px;
+                width: 300px;
+                height: 450px;
+                object-fit: cover;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Section Titles */
+            .section-title {
+                font-size: 36px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            /* Mission & Vision */
+            .icon-box {
+                text-align: center;
+                padding: 30px;
+                border-radius: 15px;
+                background: #fff;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+                transition: 0.3s;
+            }
+
+            .icon-box:hover {
+                transform: translateY(-5px);
+            }
+
+            .icon-box i {
+                font-size: 40px;
+                margin-bottom: 15px;
+                color: #f36f24;
+            }
+
+            /* Timeline */
+            .timeline {
+                position: relative;
+                max-width: 800px;
+                margin: 40px auto;
+            }
+
+            .timeline::after {
+                content: '';
+                position: absolute;
+                width: 6px;
+                background: #f36f24;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -3px;
+            }
+
+            .timeline-item {
+                padding: 20px 40px;
+                position: relative;
+                background: #fff;
+                border-radius: 8px;
+                width: 50%;
+                margin-bottom: 30px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .timeline-item.left {
+                left: 0;
+            }
+
+            .timeline-item.right {
+                left: 50%;
+            }
+
+            /* Team Section */
+            .team-card {
+                text-align: center;
+                background: #fff;
+                padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                transition: 0.3s;
+            }
+
+            .team-card img {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 5px;
+            }
+
+            .team-card:hover {
+                transform: translateY(-8px);
+            }
+
+            .social-icons a {
+                color: #f36f24;
+                margin: 0 5px;
+                font-size: 18px;
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Navbar -->
+        <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold" href="index.html">Historical Palaces</a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Menu Items -->
+        <ul class="navbar-nav ms-auto me-3">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">contact</a></li>
+        </ul>
+
+        <!-- Search Bar -->
+        <form class="d-flex me-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+        <br>
+
+       
+        <!-- <div>
+            <a href="logout" id="logout"> <i class="bi bi-box-arrow-right"></i></a>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+
+        <!-- Hero Section -->
+        <section class="about-section mt-4">
+            <div class="about-text">
+                <h5>We Offer</h5>
+                <h1><span class="gradient-text">Personalised,</span><br>Once In Lifetime Trips</h1>
+                <p>Customize your holidays the way you like it.</p>
+                <a href="#who-we-are" class="btn-gradient mt-3 d-inline-block">Learn More</a>
+            </div>
+            <div class="about-image">
+                <img src="img/Paris.avif" alt="Paris">
+            </div>
+        </section>
+
+        <!-- Who We Are -->
+        <section class="py-5" id="who-we-are">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <img src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg" alt="About Us" class="about-img w-100 rounded shadow">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="mb-3" style="font-weight: bold; color: #f36f24; font-size: 40px;">Who We Are</h2>
+                        <p>
+                            We are a dedicated team of history enthusiasts who aim to bring you closer to the most iconic and historical palaces in the world.
+                            Our mission is to preserve the heritage and tell the stories that shaped civilizations.
+                        </p>
+                        <p>
+                            From architectural marvels to royal secrets, our blog offers detailed insights, tours, and travel tips to explore these wonders.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">Our Mission & Vision</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="icon-box">
+                            <i class="fas fa-bullseye"></i>
+                            <h4>Our Mission</h4>
+                            <p>To educate and inspire people about the beauty and significance of historical palaces around the world.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="icon-box">
+                            <i class="fas fa-eye"></i>
+                            <h4>Our Vision</h4>
+                            <p>To become the leading source of historical palace knowledge and virtual experiences globally.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Timeline -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="section-title">Our History</h2>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <h4>2020</h4>
+                        <p>Founded as a small blog to share cultural heritage.</p>
+                    </div>
+                    <div class="timeline-item right">
+                        <h4>2022</h4>
+                        <p>Expanded into a global platform with historians and travelers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <!-- <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="row g-4 text-center">
+                    <div class="col-md-3">
+                        <div class="team-card">
+                            <img src="img/Rudra image.jpg" alt="Team Member">
+                            <h5 class="mt-3">Rudra Pratap Singh</h5>
+                            <p>Founder & Historian</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="team-card">
+                            <img src="img/pranshu.jpg" alt="Team Member">
+                            <h5 class="mt-3">Pranshu Savita</h5>
+                            <p>Content Strategist</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="team-card">
+                            <img src="img/Ritik.jpg" alt="Team Member">
+                            <h5 class="mt-3">Ritik Katiyar</h5>
+                            <p>Editor & Researcher</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="team-card">
+                            <img src="img/Abhishek.jpg" alt="Team Member">
+                            <h5 class="mt-3">Abhishek Kumar</h5>
+                            <p>Travel Photographer</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section> -->
+
+        <!-- footer  -->
+        <footer class="footer">
+            <div class="top-footer">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <h6>ABOUT THRILLOPHILIA</h6>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">We Are Hiring</a></li>
+                        <li><a href="#">Thrillophilia Reviews</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policies</a></li>
+                        <li><a href="#">Copyright Policies</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#" style="color:red;">Beware of Frauds</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <h6>FOR BRANDS</h6>
+                    <ul>
+                        <li><a href="#">Partner with us</a></li>
+                        <li><a href="#">Destination Marketing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <h6>FOR TRAVELLERS</h6>
+                    <ul>
+                        <li><a href="#">Gift an Experience</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div class="footer-column">
+                    <h6>TRAVEL DESTINATIONS</h6>
+                    <div class="footer-images">
+                        <img src="img/bali.png" alt="Bali">
+                        <img src="img/dubai.png" alt="Dubai">
+                        <img src="img/singapore.png" alt="Singapore">
+                        <img src="img/thailand.png" alt="Thailand">
+                        <img src="img/andaman.png" alt="Andaman">
+                        <img src="img/india.png" alt="India">
+                        <img src="img/ladaak.png" alt="Ladakh">
+                        <img src="img/hongkong.png" alt="Hongkong">
+                        <img src="img/sri lanka.png" alt="Sri Lanka">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-footer">
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                </div>
+                <p>© 2025 Historicalpalace.com All rights reserved. Designed by: Himanshu rajput,akshay singh <i class="bi bi-heart-fill"
+                                                                                                       style="color: red;"></i> </p>
+                <p>The content and images used on this site are copyright protected and copyrights vests with the respective
+                    owners...</p>
+            </div>
+        </footer>
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+</html>

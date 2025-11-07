@@ -1,0 +1,151 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Package Details</title>
+		<link rel="stylesheet" href="style.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+			<div class="container my-5">
+				<a href="index.html" class="btn btn-link mb-3">← Back</a>
+				<div class="row">
+					<div class="col-md-6">
+						<img id="pkg-img" src="" alt="Package Image" class="img-fluid rounded shadow-sm" />
+					</div>
+					<div class="col-md-6">
+						<h1 id="pkg-title">Package Title</h1>
+						<p id="pkg-desc">Package description will appear here.</p>
+					</div>
+				</div>
+
+				<hr class="my-4" />
+
+				<div class="row">
+					<div class="col-md-8">
+						<h4>Book this package</h4>
+						<form id="booking-form">
+							<input type="hidden" id="pkg-field-title" name="pkgTitle">
+							<div class="mb-3">
+								<label class="form-label">Your Name</label>
+								<input type="text" class="form-control" id="name" required>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Email</label>
+								<input type="email" class="form-control" id="email" required>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Mobile</label>
+								<input type="tel" class="form-control" id="phone" required>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Traveller count</label>
+								<input type="number" class="form-control" id="travellers" min="1" value="1" required>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Preferred Date</label>
+								<input type="date" class="form-control" id="date">
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Additional message</label>
+								<textarea class="form-control" id="message" rows="3"></textarea>
+							</div>
+
+							<button class="btn btn-success" type="submit">Submit Booking</button>
+							<div id="booking-feedback" class="mt-3"></div>
+						</form>
+					</div>
+					<div class="col-md-4">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Package Summary</h5>
+								<p><strong id="summary-title">-</strong></p>
+								<p id="summary-desc">-</p>
+							</div>
+						</div>
+						<div class="mt-3">
+							<a href="contact.html" id="enquiry-btn" class="btn btn-primary">Enquire via Contact Page</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script>
+				// Utility: read params
+				const params = new URLSearchParams(window.location.search);
+				const title = params.get('title') || '';
+				const img = params.get('img') || '';
+				const desc = params.get('desc') || '';
+
+				const titleEl = document.getElementById('pkg-title');
+				const imgEl = document.getElementById('pkg-img');
+				const descEl = document.getElementById('pkg-desc');
+				const summaryTitle = document.getElementById('summary-title');
+				const summaryDesc = document.getElementById('summary-desc');
+
+				const pkgFieldTitle = document.getElementById('pkg-field-title');
+
+				// Populate
+				if (title) titleEl.textContent = decodeURIComponent(title);
+				if (img) imgEl.src = decodeURIComponent(img);
+				else imgEl.style.display = 'none';
+				if (desc) descEl.textContent = decodeURIComponent(desc);
+
+				summaryTitle.textContent = title ? decodeURIComponent(title) : '-';
+				summaryDesc.textContent = desc ? decodeURIComponent(desc) : '-';
+				if (title) pkgFieldTitle.value = decodeURIComponent(title);
+
+				// Enquiry btn: pass package title
+				const enquiryBtn = document.getElementById('enquiry-btn');
+				enquiryBtn.addEventListener('click', (e) => {
+					const url = new URL(enquiryBtn.href, window.location.origin);
+					if (title) url.searchParams.set('pkg', title);
+					enquiryBtn.href = url.toString();
+				});
+
+				// Booking storage helpers
+				function loadBookings(){
+					try{ return JSON.parse(localStorage.getItem('bookings') || '[]'); }catch(e){ return []; }
+				}
+				function saveBookings(arr){ localStorage.setItem('bookings', JSON.stringify(arr)); }
+
+				// Form submit
+				const form = document.getElementById('booking-form');
+				const feedback = document.getElementById('booking-feedback');
+				form.addEventListener('submit', (e) => {
+					e.preventDefault();
+					const booking = {
+						id: 'bk_' + Date.now(),
+						pkgTitle: pkgFieldTitle.value || (title ? decodeURIComponent(title) : ''),
+						pkgImg: img ? decodeURIComponent(img) : '',
+						pkgDesc: desc ? decodeURIComponent(desc) : '',
+						name: document.getElementById('name').value.trim(),
+						email: document.getElementById('email').value.trim(),
+						phone: document.getElementById('phone').value.trim(),
+						travellers: document.getElementById('travellers').value,
+						date: document.getElementById('date').value || null,
+						message: document.getElementById('message').value.trim(),
+						status: 'pending',
+						createdAt: new Date().toISOString(),
+						adminNote: null,
+						adminAt: null
+					};
+
+					// basic validation
+					if(!booking.name || !booking.email || !booking.phone){
+						feedback.innerHTML = '<div class="alert alert-danger">Please fill name, email and phone.</div>';
+						return;
+					}
+
+					const all = loadBookings();
+					all.push(booking);
+					saveBookings(all);
+
+					feedback.innerHTML = `<div class="alert alert-success">Booking submitted successfully. Booking ID: <strong>${booking.id}</strong>. Status: <strong>${booking.status}</strong></div>`;
+					form.reset();
+				});
+			</script>
+	</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Historical Palaces</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .booking-card {
+            transition: all 0.3s ease;
+        }
+        .booking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .status-pending {
+            color: #ffc107;
+        }
+        .status-approved {
+            color: #28a745;
+        }
+        .status-rejected {
+            color: #dc3545;
+        }
+        .admin-sidebar {
+            background: #2c3e50;
+            color: white;
+            min-height: 100vh;
+        }
+        .admin-sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 0.8rem 1rem;
+            margin: 0.2rem 0;
+            border-radius: 5px;
+        }
+        .admin-sidebar .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        .admin-sidebar .nav-link.active {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Admin Login</h5>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="adminPass" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div id="loginError" class="alert alert-danger mt-3 d-none">
+                    Invalid password. Please try again.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">Historical Palaces</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="admin.html">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link text-warning" href="#" id="logoutBtn" style="display: none;">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 admin-sidebar p-3">
+            <h5 class="mb-3 text-white">Admin Dashboard</h5>
+            <div class="nav flex-column">
+                <a class="nav-link active" href="#bookings" data-bs-toggle="tab">
+                    <i class="bi bi-calendar-check me-2"></i>Bookings
+                </a>
+                <a class="nav-link" href="#statistics" data-bs-toggle="tab">
+                    <i class="bi bi-graph-up me-2"></i>Statistics
+                </a>
+                <a class="nav-link" href="#settings" data-bs-toggle="tab">
+                    <i class="bi bi-gear me-2"></i>Settings
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 col-lg-10 p-4">
+            <div class="tab-content">
+                <!-- Bookings Tab -->
+                <div class="tab-pane active" id="bookings">
+                    <h3 class="mb-4">Manage Bookings</h3>
+                    
+                    <!-- Filters -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <select class="form-select" id="statusFilter">
+                                <option value="all">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="date" class="form-control" id="dateFilter">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" placeholder="Search bookings..." id="searchBookings">
+                        </div>
+                    </div>
+
+                    <!-- Bookings List -->
+                    <div id="bookingsList" class="row g-4">
+                        <!-- Bookings will be populated here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Statistics Tab -->
+                <div class="tab-pane" id="statistics">
+                    <h3 class="mb-4">Booking Statistics</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+                                    <h6 class="mb-1">Total Bookings</h6>
+                                    <h3 id="totalBookings">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-dark">
+                                <div class="card-body">
+                                    <h6 class="mb-1">Pending</h6>
+                                    <h3 id="pendingBookings">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h6 class="mb-1">Approved</h6>
+                                    <h3 id="approvedBookings">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body">
+                                    <h6 class="mb-1">Rejected</h6>
+                                    <h3 id="rejectedBookings">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Status Distribution</h6>
+                                    <canvas id="statusChart" width="400" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Status Trend</h6>
+                                    <canvas id="trendChart" width="400" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Monthly Booking Statistics</h6>
+                                    <canvas id="monthlyChart" width="800" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="tab-pane" id="settings">
+                    <h3 class="mb-4">Admin Settings</h3>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="adminSettingsForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Admin Email</label>
+                                    <input type="email" class="form-control" id="adminEmail" value="admin@historicalpalaces.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Notification Preferences</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                                        <label class="form-check-label">Email notifications for new bookings</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Settings</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Check authentication
+    let isAdmin = false;
+    
+    function checkAuth() {
+        isAdmin = sessionStorage.getItem('isAdmin') === 'true';
+        if (!isAdmin) {
+            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+            document.querySelector('.admin-sidebar').style.display = 'none';
+            document.querySelector('.tab-content').style.display = 'none';
+        } else {
+            document.querySelector('.admin-sidebar').style.display = 'block';
+            document.querySelector('.tab-content').style.display = 'block';
+            document.getElementById('logoutBtn').style.display = 'block';
+        }
+    }
+
+    // Load and display bookings
+    function loadBookings() {
+        const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+        const bookingsList = document.getElementById('bookingsList');
+        const statusFilter = document.getElementById('statusFilter').value;
+        const dateFilter = document.getElementById('dateFilter').value;
+        const searchText = document.getElementById('searchBookings').value.toLowerCase();
+
+        // Update all charts
+        updateCharts(bookings);
+
+    // Update statistics
+    const total = bookings.length;
+    const pending = bookings.filter(b => b.status === 'pending').length;
+    const approved = bookings.filter(b => b.status === 'approved').length;
+    const rejected = bookings.filter(b => b.status === 'rejected').length;
+    document.getElementById('totalBookings').textContent = total;
+    document.getElementById('pendingBookings').textContent = pending;
+    document.getElementById('approvedBookings').textContent = approved;
+    document.getElementById('rejectedBookings').textContent = rejected;
+
+        // Filter bookings
+        const filteredBookings = bookings.filter(booking => {
+            const matchesStatus = statusFilter === 'all' || booking.status === statusFilter;
+            const matchesDate = !dateFilter || booking.date === dateFilter;
+            const matchesSearch = !searchText || 
+                booking.name.toLowerCase().includes(searchText) || 
+                booking.pkgTitle.toLowerCase().includes(searchText);
+            return matchesStatus && matchesDate && matchesSearch;
+        });
+
+        // Display bookings
+        bookingsList.innerHTML = filteredBookings.map(booking => `
+            <div class="col-md-6 col-lg-4">
+                <div class="card booking-card h-100">
+                    ${booking.pkgImg ? `<img src="${booking.pkgImg}" class="card-img-top" alt="${booking.pkgTitle}" style="height: 200px; object-fit: cover;">` : ''}
+                    <div class="card-body">
+                        <h5 class="card-title">${booking.pkgTitle}</h5>
+                        <p class="card-text">
+                            <strong>Name:</strong> ${booking.name}<br>
+                            <strong>Email:</strong> ${booking.email}<br>
+                            <strong>Phone:</strong> ${booking.phone}<br>
+                            <strong>Date:</strong> ${booking.date || 'Not specified'}<br>
+                            <strong>Travelers:</strong> ${booking.travellers}<br>
+                            <strong>Status:</strong> ${renderStatusBadge(booking.status)}
+                        </p>
+                        ${booking.message ? `<p class="card-text"><small class="text-muted">"${booking.message}"</small></p>` : ''}
+                        ${booking.status === 'pending' ? `
+                            <div class="btn-group w-100">
+                                <button class="btn btn-success" onclick="updateBookingStatus('${booking.id}', 'approved')">
+                                    <i class="bi bi-check-circle"></i> Approve
+                                </button>
+                                <button class="btn btn-danger" onclick="updateBookingStatus('${booking.id}', 'rejected')">
+                                    <i class="bi bi-x-circle"></i> Reject
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="card-footer text-muted">
+                        Booked on: ${new Date(booking.createdAt).toLocaleDateString()}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        // Update chart
+        updateStatusChart({ pending, approved, rejected });
+    }
+
+    // Update booking status
+    function updateBookingStatus(bookingId, newStatus) {
+        if (!isAdmin) return;
+        
+        const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+        const updatedBookings = bookings.map(booking => {
+            if (booking.id === bookingId) {
+                return {
+                    ...booking,
+                    status: newStatus,
+                    adminAt: new Date().toISOString()
+                };
+            }
+            return booking;
+        });
+        localStorage.setItem('bookings', JSON.stringify(updatedBookings));
+        loadBookings();
+    }
+
+    // Render status badge HTML
+    function renderStatusBadge(status){
+        if(!status) return '<span class="badge bg-secondary">UNKNOWN</span>';
+        const s = status.toLowerCase();
+        if(s === 'pending') return '<span class="badge bg-warning text-dark">PENDING</span>';
+        if(s === 'approved') return '<span class="badge bg-success">APPROVED</span>';
+        if(s === 'rejected') return '<span class="badge bg-danger">REJECTED</span>';
+        return `<span class="badge bg-secondary">${status.toUpperCase()}</span>`;
+    }
+
+    // Event listeners
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const password = document.getElementById('adminPass').value;
+        if (password === 'admin123') { // Change this to a secure password in production
+            isAdmin = true;
+            sessionStorage.setItem('isAdmin', 'true');
+            bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+            document.querySelector('.admin-sidebar').style.display = 'block';
+            document.querySelector('.tab-content').style.display = 'block';
+            document.getElementById('logoutBtn').style.display = 'block';
+            loadBookings();
+        } else {
+            document.getElementById('loginError').classList.remove('d-none');
+        }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        isAdmin = false;
+        sessionStorage.removeItem('isAdmin');
+        location.reload();
+    });
+
+    document.getElementById('statusFilter').addEventListener('change', loadBookings);
+    document.getElementById('dateFilter').addEventListener('change', loadBookings);
+    document.getElementById('searchBookings').addEventListener('input', loadBookings);
+    
+    document.getElementById('adminSettingsForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!isAdmin) return;
+        alert('Settings saved successfully!');
+    });
+
+    // Initial load
+    checkAuth();
+    if (isAdmin) {
+        loadBookings();
+    }
+
+    // Refresh bookings every 30 seconds if logged in
+    setInterval(() => {
+        if (isAdmin) {
+            loadBookings();
+        }
+    }, 30000);
+
+    // Charts setup
+    let statusChart = null;
+    let trendChart = null;
+    let monthlyChart = null;
+
+    function updateCharts(bookings) {
+        const counts = {
+            approved: bookings.filter(b => b.status === 'approved').length,
+            rejected: bookings.filter(b => b.status === 'rejected').length,
+            pending: bookings.filter(b => b.status === 'pending').length
+        };
+
+        // Status Distribution Chart (Doughnut)
+        updateStatusChart(counts);
+        
+        // Status Trend Chart (Line)
+        updateTrendChart(bookings);
+        
+        // Monthly Statistics Chart (Bar)
+        updateMonthlyChart(bookings);
+    }
+
+    function updateStatusChart(counts){
+        try{
+            const ctx = document.getElementById('statusChart');
+            if(!ctx) return;
+            const data = [counts.approved || 0, counts.rejected || 0, counts.pending || 0];
+            const labels = ['Approved','Rejected','Pending'];
+            if(statusChart) {
+                statusChart.data.datasets[0].data = data;
+                statusChart.update();
+                return;
+            }
+            statusChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: ['#28a745','#dc3545','#ffc107'],
+                        borderColor: ['#ffffff','#ffffff','#ffffff'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }catch(e){ console.error('Chart error', e); }
+    }
+
+    function updateTrendChart(bookings) {
+        try {
+            const ctx = document.getElementById('trendChart');
+            if(!ctx) return;
+
+            // Process last 7 days data
+            const last7Days = Array.from({length: 7}, (_, i) => {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                return date.toISOString().split('T')[0];
+            }).reverse();
+
+            const data = {
+                approved: last7Days.map(date => 
+                    bookings.filter(b => b.status === 'approved' && b.createdAt.startsWith(date)).length
+                ),
+                rejected: last7Days.map(date => 
+                    bookings.filter(b => b.status === 'rejected' && b.createdAt.startsWith(date)).length
+                ),
+                pending: last7Days.map(date => 
+                    bookings.filter(b => b.status === 'pending' && b.createdAt.startsWith(date)).length
+                )
+            };
+
+            if(trendChart) {
+                trendChart.data.datasets[0].data = data.approved;
+                trendChart.data.datasets[1].data = data.rejected;
+                trendChart.data.datasets[2].data = data.pending;
+                trendChart.update();
+                return;
+            }
+
+            trendChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: last7Days.map(d => new Date(d).toLocaleDateString()),
+                    datasets: [{
+                        label: 'Approved',
+                        data: data.approved,
+                        borderColor: '#28a745',
+                        tension: 0.1
+                    }, {
+                        label: 'Rejected',
+                        data: data.rejected,
+                        borderColor: '#dc3545',
+                        tension: 0.1
+                    }, {
+                        label: 'Pending',
+                        data: data.pending,
+                        borderColor: '#ffc107',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+        } catch(e) { console.error('Trend chart error', e); }
+    }
+
+    function updateMonthlyChart(bookings) {
+        try {
+            const ctx = document.getElementById('monthlyChart');
+            if(!ctx) return;
+
+            // Get last 6 months
+            const months = Array.from({length: 6}, (_, i) => {
+                const date = new Date();
+                date.setMonth(date.getMonth() - i);
+                return date.toLocaleString('default', { month: 'short' });
+            }).reverse();
+
+            const data = months.map(month => ({
+                approved: bookings.filter(b => 
+                    new Date(b.createdAt).toLocaleString('default', { month: 'short' }) === month && 
+                    b.status === 'approved'
+                ).length,
+                rejected: bookings.filter(b => 
+                    new Date(b.createdAt).toLocaleString('default', { month: 'short' }) === month && 
+                    b.status === 'rejected'
+                ).length,
+                pending: bookings.filter(b => 
+                    new Date(b.createdAt).toLocaleString('default', { month: 'short' }) === month && 
+                    b.status === 'pending'
+                ).length
+            }));
+
+            if(monthlyChart) {
+                monthlyChart.data.datasets[0].data = data.map(d => d.approved);
+                monthlyChart.data.datasets[1].data = data.map(d => d.rejected);
+                monthlyChart.data.datasets[2].data = data.map(d => d.pending);
+                monthlyChart.update();
+                return;
+            }
+
+            monthlyChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Approved',
+                        data: data.map(d => d.approved),
+                        backgroundColor: '#28a745'
+                    }, {
+                        label: 'Rejected',
+                        data: data.map(d => d.rejected),
+                        backgroundColor: '#dc3545'
+                    }, {
+                        label: 'Pending',
+                        data: data.map(d => d.pending),
+                        backgroundColor: '#ffc107'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+        } catch(e) { console.error('Monthly chart error', e); }
+    }
+</script>
+
+</body>
+</html>

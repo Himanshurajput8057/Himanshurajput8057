@@ -1,0 +1,190 @@
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .heroindex {
+      background: url(img/bghero.jpg) center/cover no-repeat;
+      height: 75vh;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .card img {
+      height: 220px;
+      object-fit: cover;
+    }
+
+    footer {
+      background: #222;
+      color: #ddd;
+      padding: 20px 0;
+    }
+
+    .footer {
+      background-color: #2d2f31;
+      color: #fff;
+      padding-top: 40px;
+    }
+
+    .footer .top-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-column {
+      flex: 1 1 200px;
+      margin-bottom: 20px;
+    }
+
+    .footer-column h6 {
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      text-decoration: none;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .footer-column ul li a:hover {
+      color: #fff;
+    }
+
+    .footer-images {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      gap: 10px;
+    }
+
+    .footer-images img {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .bottom-footer {
+      text-align: center;
+      border-top: 1px solid #444;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .social-icons {
+      margin: 15px 0;
+    }
+
+    .social-icons a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #1abc9c;
+    }
+
+    @media (max-width: 768px) {
+      .footer .top-footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-images {
+        justify-content: center;
+      }
+    }
+
+    .custom-card {
+      background: #fff;
+      border-left: 4px solid #ff6600;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      max-width: 800px;
+      margin-left: 30px;
+    }
+
+    .custom-card-header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    .custom-card-header .number {
+      color: #ff6600;
+      font-size: 40px;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .custom-card-header .title {
+      font-size: 24px;
+      color: #000;
+    }
+
+    .custom-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .custom-card-body {
+      padding: 20px;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .custom-card-body em {
+      color: #999;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 15px;
+      color: #ff6600;
+      font-weight: bold;
+      text-decoration: none;
+
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+     
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+
+

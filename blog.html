@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Historical Palaces</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .hero-banner {
+      background: url('img/blog.jpg') no-repeat center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+      height: 450px;
+    }
+
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+    }
+
+    .search-box {
+      max-width: 500px;
+      margin: 20px auto 0;
+    }
+
+    .search-box input {
+      border-radius: 8px 0 0 8px;
+      padding: 12px;
+      border: none;
+    }
+
+    .search-box button {
+      background-color: #ff6f00;
+      color: #fff;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: bold;
+      font-size: 32px;
+      color:  #004f56;
+    }
+
+    .blog-card img {
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .blog-card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .btn-read {
+      background-color: #ff6f00;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 8px 16px;
+    }
+
+    .btn-read:hover {
+      background-color: #e65c00;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .category-badge {
+      background-color: #ff9800;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .category-badge:hover {
+      background-color: #ff6f00;
+    }
+
+    .newsletter {
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 50px 20px;
+      border-radius: 12px;
+    }
+
+    .newsletter input {
+      border-radius: 8px 0 0 8px;
+      border: 1px solid #ccc;
+      padding: 12px;
+    }
+
+    .newsletter button {
+      background-color: #ff6f00;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f8f9fa;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold" href="index.html">Historical Palaces</a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Menu Items -->
+        <ul class="navbar-nav ms-auto me-3">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+
+        <!-- Search Bar -->
+        <form class="d-flex me-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+        <br>
+
+       
+        <!-- <div>
+            <a href="logout" id="logout"> <i class="bi bi-box-arrow-right"></i></a>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <h1>Explore Our Blog</h1>
+      <p>Discover stories, tips, and history of the world's most iconic palaces</p>
+      <div class="search-box d-flex">
+        <input type="text" class="form-control" placeholder="Search blog posts...">
+        <button type="button">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Blogs -->
+  <section class="container py-5">
+    <h2 class="section-title">Featured Blogs</h2>
+    <div class="row g-4">
+      <div class="col-sm-4">
+        <div class="card blog-card">
+          <img src="img/Tajmahal.avif" alt="Taj Mahal">
+          <div class="card-body">
+            <h5 class="card-title">The Eternal Beauty of Taj Mahal</h5>
+            <p class="card-text text-muted">Discover the story behind one of the world's greatest wonders.</p>
+            <a href="#" class="btn btn-read">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card blog-card">
+          <img src="img/Red Fort.avif" alt="Red Fort">
+          <div class="card-body">
+            <h5 class="card-title">Red Fort: A Symbol of Power</h5>
+            <p class="card-text text-muted">Step inside the fort that witnessed the rise and fall of empires.</p>
+            <a href="#" class="btn btn-read">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card blog-card">
+          <img src="img/Hawa Mahal Jaypur.avif" alt="Hawa Mahal">
+          <div class="card-body">
+            <h5 class="card-title">Hawa Mahal: The Palace of Winds</h5>
+            <p class="card-text text-muted">Uncover the secrets of Jaipur's most iconic architecture.</p>
+            <a href="#" class="btn btn-read">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="container py-5">
+    <h2 class="section-title">Browse by Categories</h2>
+    <div class="categories">
+      <a href="#" class="category-badge">Architecture</a>
+      <a href="#" class="category-badge">Indian Palaces</a>
+      <a href="#" class="category-badge">History</a>
+      <a href="#" class="category-badge">Travel Tips</a>
+      <a href="#" class="category-badge">Heritage Sites</a>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter container my-5">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Get the latest articles and travel tips directly to your inbox!</p>
+    <div class="d-flex justify-content-center mt-3">
+      <input type="email" placeholder="Enter your email" class="form-control w-50">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+   <!-- footer  -->
+ <footer class="footer">
+    <div class="top-footer">
+      <!-- Column 1 -->
+      <div class="footer-column">
+        <h6>ABOUT THRILLOPHILIA</h6>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">We Are Hiring</a></li>
+          <li><a href="#">Thrillophilia Reviews</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policies</a></li>
+          <li><a href="#">Copyright Policies</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#" style="color:red;">Beware of Frauds</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-column">
+        <h6>FOR BRANDS</h6>
+        <ul>
+          <li><a href="#">Partner with us</a></li>
+          <li><a href="#">Destination Marketing</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-column">
+        <h6>FOR TRAVELLERS</h6>
+        <ul>
+          <li><a href="#">Gift an Experience</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4 -->
+      <div class="footer-column">
+        <h6>TRAVEL DESTINATIONS</h6>
+        <div class="footer-images">
+          <img src="img/bali.png" alt="Bali">
+          <img src="img/dubai.png" alt="Dubai">
+          <img src="img/singapore.png" alt="Singapore">
+          <img src="img/thailand.png" alt="Thailand">
+          <img src="img/andaman.png" alt="Andaman">
+          <img src="img/india.png" alt="India">
+          <img src="img/ladaak.png" alt="Ladakh">
+          <img src="img/hongkong.png" alt="Hongkong">
+          <img src="img/sri lanka.png" alt="Sri Lanka">
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-footer">
+      <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+      </div>
+      <p>© 2025 Historicalpalace.com All rights reserved. Designed by:himanshurajput</by:himanshurajput> <i class="bi bi-heart-fill"
+          style="color: red;"></i> </p>
+      <p>The content and images used on this site are copyright protected and copyrights vests with the respective
+        owners...</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
